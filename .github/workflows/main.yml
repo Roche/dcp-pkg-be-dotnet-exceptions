@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  id-token: write  # Required for requesting the OIDC JWT token
+  id-token: write  # Grants permission to fetch the OIDC JWT token
   contents: read
 
 jobs:
@@ -22,9 +22,6 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Setup NuGet.exe
-        uses: nuget/setup-nuget@v2
-
       - name: Restore dependencies
         run: dotnet restore
 
@@ -35,4 +32,4 @@ jobs:
         run: dotnet pack --configuration Release --no-build --output ./nupkgs
 
       - name: Push to NuGet
-        run: nuget push ./nupkgs/*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate
+        run: dotnet nuget push ./nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key "dummy"
