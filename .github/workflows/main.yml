@@ -1,0 +1,36 @@
+name: Publish to NuGet
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write  # Required for requesting the OIDC JWT token
+  contents: read
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' # Adjust to your target .NET SDK version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack NuGet package
+        run: dotnet pack --configuration Release --no-build --output ./nupkgs
+
+      - name: Push to NuGet
+        # .NET 8 SDK (specifically 8.0.400+) and .NET 9 natively support OIDC authentication when id-token: write is enabled
+        run: dotnet nuget push ./nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
