@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>OpenDCP.Framework.Exceptions</RootNamespace>
+    <PackageId>OpenDCP.Framework.Exceptions</PackageId>
+    <PackageProjectUrl>https://open-dcp.ai/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Roche/dcp-pkg-be-dotnet-exceptions</RepositoryUrl>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+</Project>

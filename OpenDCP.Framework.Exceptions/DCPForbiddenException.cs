@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DCP.Framework.Exceptions
+namespace OpenDCP.Framework.Exceptions
 {
     public class DCPForbiddenException : DCPBaseException
     {

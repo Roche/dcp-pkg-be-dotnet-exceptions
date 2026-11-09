@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DCP.Framework.Exceptions
+namespace OpenDCP.Framework.Exceptions
 {
     [Obsolete]
     public class DCPRawBadRequestException : DCPBaseException
